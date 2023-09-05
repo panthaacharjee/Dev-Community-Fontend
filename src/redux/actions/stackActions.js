@@ -32,6 +32,8 @@ import {
   VIEW_QUESTION_SUCCESS,
 } from "../constants/stackConstants";
 
+const domain = "https://dev-community-6b0e.onrender.com";
+
 //Get All Questions
 export const getAllQuestions = () => async (dispatch) => {
   try {
@@ -39,7 +41,7 @@ export const getAllQuestions = () => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.get(`/api/v1/get/questions`, config);
+    const { data } = await axios.get(`${domain}/api/v1/get/questions`, config);
 
     dispatch({ type: GET_ALL_QUESTIONS_SUCCESS, payload: data });
   } catch (error) {
@@ -58,7 +60,7 @@ export const createQuestion = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/create/question`,
+      `${domain}/api/v1/create/question`,
       userData,
       config
     );
@@ -80,7 +82,7 @@ export const deleteQuestion = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.delete(
-      `/api/v1/delete/question/${id}`,
+      `${domain}/api/v1/delete/question/${id}`,
       config
     );
 
@@ -98,7 +100,7 @@ export const getQuestion = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_QUESTION_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/get/question/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/get/question/${id}`);
 
     dispatch({ type: GET_SINGLE_QUESTION_SUCCESS, payload: data });
   } catch (error) {
@@ -114,7 +116,9 @@ export const getLikeAndUnlike = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_LIKEANDUNLIKE_QUESTION_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/get/likeAndunlikeQuestion/${id}`);
+    const { data } = await axios.get(
+      `${domain}/api/v1/get/likeAndunlikeQuestion/${id}`
+    );
 
     dispatch({ type: GET_LIKEANDUNLIKE_QUESTION_SUCCESS, payload: data });
   } catch (error) {
@@ -130,7 +134,7 @@ export const viewQuestion = (id) => async (dispatch) => {
   try {
     dispatch({ type: VIEW_QUESTION_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/question/viewed/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/question/viewed/${id}`);
 
     dispatch({ type: VIEW_QUESTION_SUCCESS, payload: data });
   } catch (error) {
@@ -149,7 +153,7 @@ export const createAnswer = (id, userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/answer/add/${id}`,
+      `${domain}/api/v1/answer/add/${id}`,
       userData,
       config
     );
@@ -168,7 +172,9 @@ export const likeAndUnlikeAnswer = (id) => async (dispatch) => {
   try {
     dispatch({ type: LIKE_ANSWER_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/answer/likeandunlike/${id}`);
+    const { data } = await axios.get(
+      `${domain}/api/v1/answer/likeandunlike/${id}`
+    );
 
     dispatch({ type: LIKE_ANSWER_SUCCESS, payload: data });
   } catch (error) {
@@ -187,7 +193,7 @@ export const updateAnswer = (id, userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/answer/update/${id}`,
+      `${domain}/api/v1/answer/update/${id}`,
       userData,
       config
     );
@@ -209,7 +215,7 @@ export const deleteAnswer = (id, userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/answer/delete/${id}`,
+      `${domain}/api/v1/answer/delete/${id}`,
       userData,
       config
     );

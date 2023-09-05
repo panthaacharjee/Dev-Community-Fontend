@@ -21,13 +21,15 @@ import {
   HIRE_DEVELOPER_SUCCESS,
 } from "../constants/projectConstants";
 
+const domain = "https://dev-community-6b0e.onrender.com";
+
 //Get All Projects
 export const getAllProject =
   (keyword = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: GET_ALL_PROJECT_REQUEST });
-      let link = `/api/v1/get/projects?keyword=${keyword}`;
+      let link = `${domain}/api/v1/get/projects?keyword=${keyword}`;
 
       const { data } = await axios.get(link);
 
@@ -45,7 +47,7 @@ export const getSingleProject = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_PROJECT_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/get/project/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/get/project/${id}`);
 
     dispatch({ type: GET_SINGLE_PROJECT_SUCCESS, payload: data.project });
   } catch (error) {
@@ -63,7 +65,7 @@ export const createProject = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/create/project`,
+      `${domain}/api/v1/create/project`,
       userData,
       config
     );
@@ -84,7 +86,7 @@ export const applyProject = (userData, id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/create/project/apply/${id}`,
+      `${domain}/api/v1/create/project/apply/${id}`,
       userData,
       config
     );
@@ -105,7 +107,7 @@ export const hireDeveloper = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/hire/developer`,
+      `${domain}/api/v1/hire/developer`,
       userData,
       config
     );
@@ -126,7 +128,7 @@ export const completeProject = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/complete/project`,
+      `${domain}/api/v1/complete/project`,
       userData,
       config
     );

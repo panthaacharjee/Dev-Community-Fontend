@@ -19,13 +19,14 @@ import {
   SEND_APPLICANT_EMAIL_SUCCESS,
 } from "../constants/jobConstants";
 import axios from "axios";
+const domain = "https://dev-community-6b0e.onrender.com";
 
 export const getAllJob =
   (keyword = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: GET_ALL_JOB_REQUEST });
-      let link = `/api/v1/get/jobs?keyword=${keyword}`;
+      let link = `${domain}/api/v1/get/jobs?keyword=${keyword}`;
 
       const { data } = await axios.get(link);
 
@@ -42,7 +43,7 @@ export const getSingleJob = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_JOB_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/get/job/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/get/job/${id}`);
 
     dispatch({ type: GET_SINGLE_JOB_SUCCESS, payload: data.job });
   } catch (error) {
@@ -58,7 +59,7 @@ export const applyJob = (id, userData) => async (dispatch) => {
     dispatch({ type: APPLY_JOB_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.put(
-      `/api/v1/apply/job/${id}`,
+      `${domain}/api/v1/apply/job/${id}`,
       userData,
       config
     );
@@ -78,7 +79,11 @@ export const createJob = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`/api/v1/create/job`, userData, config);
+    const { data } = await axios.post(
+      `${domain}/api/v1/create/job`,
+      userData,
+      config
+    );
 
     dispatch({ type: CREATE_JOB_SUCCESS, payload: data });
   } catch (error) {
@@ -97,7 +102,7 @@ export const sendApplicantsMail = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/send/mail/applicants`,
+      `${domain}/api/v1/send/mail/applicants`,
       userData,
       config
     );
@@ -116,7 +121,10 @@ export const deleteJob = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_JOB_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.delete(`/api/v1/delete/job/${id}`, config);
+    const { data } = await axios.delete(
+      `${domain}/api/v1/delete/job/${id}`,
+      config
+    );
 
     dispatch({ type: DELETE_JOB_SUCCESS, payload: data.success });
   } catch (error) {

@@ -89,6 +89,8 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
+const domain = "https://dev-community-6b0e.onrender.com";
+
 // Login
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -97,7 +99,7 @@ export const login = (email, password) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/login`,
+      `${domain}/api/v1/login`,
       { email, password },
       config
     );
@@ -115,7 +117,11 @@ export const register = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(`/api/v1/register`, userData, config);
+    const { data } = await axios.post(
+      `${domain}/api/v1/register`,
+      userData,
+      config
+    );
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
@@ -131,7 +137,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/me`);
+    const { data } = await axios.get(`${domain}/api/v1/me`);
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
@@ -142,7 +148,7 @@ export const loadUser = () => async (dispatch) => {
 // Logout User
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get(`/api/v1/logout`);
+    await axios.get(`${domain}/api/v1/logout`);
 
     dispatch({ type: LOGOUT_SUCCESS });
   } catch (error) {
@@ -157,7 +163,11 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.put(`/api/v1/me/update`, userData, config);
+    const { data } = await axios.put(
+      `${domain}/api/v1/me/update`,
+      userData,
+      config
+    );
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
   } catch (error) {
@@ -176,7 +186,7 @@ export const updateAvatar = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/avatar`,
+      `${domain}/api/v1/me/update/avatar`,
       userData,
       config
     );
@@ -198,7 +208,7 @@ export const updateBanner = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/banner`,
+      `${domain}/api/v1/me/update/banner`,
       userData,
       config
     );
@@ -220,7 +230,7 @@ export const updateAbout = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/about`,
+      `${domain}/api/v1/me/update/about`,
       userData,
       config
     );
@@ -242,7 +252,7 @@ export const updateSkill = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/skills`,
+      `${domain}/api/v1/me/update/skills`,
       userData,
       config
     );
@@ -263,7 +273,10 @@ export const deleteSkills = (id) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.put(`/api/v1/me/delete/skills/${id}`, config);
+    const { data } = await axios.put(
+      `${domain}/api/v1/me/delete/skills/${id}`,
+      config
+    );
 
     dispatch({ type: DELETE_SKILL_SUCCESS, payload: data.success });
   } catch (error) {
@@ -282,7 +295,7 @@ export const updateExperience = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/experience`,
+      `${domain}/api/v1/me/update/experience`,
       userData,
       config
     );
@@ -303,7 +316,7 @@ export const deleteExperinces = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/delete/experience/${id}`,
+      `${domain}/api/v1/me/delete/experience/${id}`,
       config
     );
 
@@ -324,7 +337,7 @@ export const updateEducation = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/educations`,
+      `${domain}/api/v1/me/update/educations`,
       userData,
       config
     );
@@ -345,7 +358,7 @@ export const deleteEducations = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/delete/educations/${id}`,
+      `${domain}/api/v1/me/delete/educations/${id}`,
       config
     );
 
@@ -366,7 +379,7 @@ export const updatePortfolio = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/portfolios`,
+      `${domain}/api/v1/me/update/portfolios`,
       userData,
       config
     );
@@ -387,7 +400,7 @@ export const deletePortfolios = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/delete/portfolios/${id}`,
+      `${domain}/api/v1/me/delete/portfolios/${id}`,
       config
     );
 
@@ -407,7 +420,7 @@ export const updateLanguage = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/update/languages`,
+      `${domain}/api/v1/me/update/languages`,
       userData,
       config
     );
@@ -428,7 +441,7 @@ export const deleteLanguages = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1/me/delete/languages/${id}`,
+      `${domain}/api/v1/me/delete/languages/${id}`,
       config
     );
 
@@ -449,7 +462,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/password/update`,
+      `${domain}/api/v1/password/update`,
       passwords,
       config
     );
@@ -470,7 +483,11 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
+    const { data } = await axios.post(
+      `${domain}/api/v1/password/forgot`,
+      email,
+      config
+    );
 
     dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
   } catch (error) {
@@ -489,7 +506,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/password/reset/${token}`,
+      `${domain}/api/v1/password/reset/${token}`,
       passwords,
       config
     );
@@ -507,7 +524,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`/api/v1/admin/users`);
+    const { data } = await axios.get(`${domain}/api/v1/admin/users`);
 
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
@@ -519,7 +536,7 @@ export const getAllUsers = () => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/v1/admin/user/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/admin/user/${id}`);
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
   } catch (error) {
@@ -535,7 +552,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/admin/user/${id}`,
+      `${domain}/api/v1/admin/user/${id}`,
       userData,
       config
     );
@@ -554,7 +571,7 @@ export const deleteUser = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_USER_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/admin/user/${id}`);
+    const { data } = await axios.delete(`${domain}/api/v1/admin/user/${id}`);
 
     dispatch({ type: DELETE_USER_SUCCESS, payload: data });
   } catch (error) {
@@ -569,7 +586,7 @@ export const allDeveloper = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_DEVELOPER_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/all/developer`);
+    const { data } = await axios.get(`${domain}/api/v1/all/developer`);
 
     dispatch({ type: ALL_DEVELOPER_SUCCESS, payload: data.developer });
   } catch (error) {
@@ -584,7 +601,7 @@ export const getSingleDeveloper = (id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_DEVELOPER_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/single/developer/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/single/developer/${id}`);
 
     dispatch({ type: SINGLE_DEVELOPER_SUCCESS, payload: data.developer });
   } catch (error) {
@@ -604,7 +621,7 @@ export const getAdminUser = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_USER_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/user`);
+    const { data } = await axios.get(`${domain}/api/v1/user`);
 
     dispatch({ type: ADMIN_USER_SUCCESS, payload: data.user });
   } catch (error) {
@@ -622,7 +639,7 @@ export const deleteAdminUser = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.delete(
-      `/api/v1/user/delete`,
+      `${domain}/api/v1/user/delete`,
       userData,
       config
     );

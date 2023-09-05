@@ -32,6 +32,8 @@ import {
 } from "../constants/postConstants";
 import axios from "axios";
 
+const domain = "https://dev-community-6b0e.onrender.com";
+
 //Get All Posts
 export const getAllPost = () => async (dispatch) => {
   try {
@@ -39,7 +41,7 @@ export const getAllPost = () => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.get(`/api/v1/get/posts`, config);
+    const { data } = await axios.get(`${domain}/api/v1/get/posts`, config);
 
     dispatch({ type: GET_ALL_POST_SUCCESS, payload: data.posts });
   } catch (error) {
@@ -57,7 +59,11 @@ export const createPost = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`/api/v1/create/post`, userData, config);
+    const { data } = await axios.post(
+      `${domain}/api/v1/create/post`,
+      userData,
+      config
+    );
 
     dispatch({ type: CREATE_POST_SUCCESS, payload: data });
   } catch (error) {
@@ -75,7 +81,10 @@ export const deletePost = (id) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.delete(`/api/v1/post/delete/${id}`, config);
+    const { data } = await axios.delete(
+      `${domain}/api/v1/post/delete/${id}`,
+      config
+    );
 
     dispatch({ type: DELETE_POST_SUCCESS, payload: data });
   } catch (error) {
@@ -92,7 +101,9 @@ export const likeAndUnlikePost = (id) => async (dispatch) => {
     dispatch({ type: POST_LIKE_AND_UNLIKE_REQUEST });
     // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(`/api/v1/post/likeAndunlike/${id}`);
+    const { data } = await axios.get(
+      `${domain}/api/v1/post/likeAndunlike/${id}`
+    );
 
     dispatch({ type: POST_LIKE_AND_UNLIKE_SUCCESS, payload: data });
     // console.log(useForm1);
@@ -108,7 +119,7 @@ export const likeAndUnlikePost = (id) => async (dispatch) => {
 export const getSinglePost = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_POST_REQUEST });
-    const { data } = await axios.get(`/api/v1/get/post/${id}`);
+    const { data } = await axios.get(`${domain}/api/v1/get/post/${id}`);
     dispatch({ type: GET_SINGLE_POST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -124,7 +135,7 @@ export const createComment = (id, userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/comment/add/${id}`,
+      `${domain}/api/v1/comment/add/${id}`,
       userData,
       config
     );
@@ -142,7 +153,9 @@ export const deleteComment = (id) => async (dispatch) => {
     dispatch({ type: DELETE_COMMENT_REQUEST });
     // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.delete(`/api/v1/comment/delete/${id}`);
+    const { data } = await axios.delete(
+      `${domain}/api/v1/comment/delete/${id}`
+    );
     dispatch({ type: DELETE_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -158,7 +171,7 @@ export const likeAndUnlikeComment = (id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/comment/likeAndunlike/${id}`,
+      `${domain}/api/v1/comment/likeAndunlike/${id}`,
       config
     );
     dispatch({ type: LIKE_AND_UNLIKE_COMMENT_SUCCESS, payload: data });
@@ -177,7 +190,7 @@ export const addReply = (userdata, id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/reply/add/${id}`,
+      `${domain}/api/v1/reply/add/${id}`,
       userdata,
       config
     );
@@ -197,7 +210,7 @@ export const deleteReply = (userData, id) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/v1/reply/delete/${id}`,
+      `${domain}/api/v1/reply/delete/${id}`,
       userData,
       config
     );
