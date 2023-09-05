@@ -1,5 +1,5 @@
 {
-  "proxy": "https://dev-community-6b0e.onrender.com/",
+  "proxy": "https://dev-community-6b0e.onrender.com",
   "name": "fontend",
   "version": "0.1.0",
   "private": true,
