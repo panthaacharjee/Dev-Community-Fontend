@@ -5,7 +5,7 @@ import {
   createQuestion,
   getAllQuestions,
 } from "../../redux/actions/stackActions";
-import Question from "./Question";
+import Question from "./Question"; //
 import Loader from "../Loader/Loader";
 import { RxCross2 } from "react-icons/rx";
 import JoditEditor from "jodit-react";
