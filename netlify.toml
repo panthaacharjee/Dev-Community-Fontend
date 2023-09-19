@@ -2,3 +2,4 @@
 form = "/*"
 to="https://dev-community-6b0e.onrender.com"
 status=200
+force = true
